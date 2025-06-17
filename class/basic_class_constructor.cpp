@@ -12,6 +12,10 @@ class GPIO{
                 std::cout<<"PIN Number "<<pin_number<<
                     " Status "<<current_status<<std::endl;
             }
+
+        ~GPIO(){
+            std::cout<<"Cleaning up GPIO pin "<<pin_number<<std::endl;
+        }
     
         void set_status(bool status){
             current_status = status;
