@@ -1,32 +1,37 @@
 #include <iostream>
 
-
 class GPIO{
     private:
         bool current_status;
         int pin_number;
     public:
-        
-        GPIO(int pin, bool status):
-            pin_number(pin), current_status(status){
-                std::cout<<"PIN Number "<<pin_number<<
-                    " Status "<<current_status<<std::endl;
-            }
+        GPIO(int pin, bool status);
+        ~GPIO();
+        void set_status(bool status);
+        bool get_status() const;
+        int get_pin_number() const;
+};
 
-        ~GPIO(){
+
+GPIO::GPIO(int pin, bool status):
+        pin_number(pin), current_status(status){
+        std::cout<<"PIN Number "<<pin_number<<
+           " Status "<<current_status<<std::endl;
+        }
+
+GPIO::~GPIO(){
             std::cout<<"Cleaning up GPIO pin "<<pin_number<<std::endl;
         }
     
-        void set_status(bool status){
+void GPIO::set_status(bool status){
             current_status = status;
         }
-        bool get_status() const{
+bool GPIO::get_status() const{
             return current_status;
         }
-        int get_pin_number() const{
+int GPIO::get_pin_number() const{
             return pin_number;
         }
-};
 
 
 void print_pin_number(const GPIO &gpio){
